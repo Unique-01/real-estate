@@ -1,0 +1,212 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% block title %}
+  {% trans "Homepage" %}
+{% endblock title %}
+{% block content %}
+  
+  <!--/ Carousel Star /-->
+  <div class="intro intro-carousel">
+    <div id="carousel" class="owl-carousel owl-theme">
+      <div class="carousel-item-a intro-item bg-image"
+           style="background-image: url({% static 'img/slide-3.jpg' %})">
+        <div class="overlay overlay-a"></div>
+        <div class="intro-content display-table">
+          <div class="table-cell">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-8">
+                  <div class="intro-body">
+                    <h1 class="intro-title mb-4">
+                      <span class="color-b">Find Your Perfect Property</span>
+                    </h1>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item-a intro-item bg-image"
+           style="background-image: url({% static 'img/post-single-1.jpg' %})">
+        <div class="overlay overlay-a"></div>
+        <div class="intro-content display-table">
+          <div class="table-cell">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-8">
+                  <div class="intro-body">
+                    <h1 class="intro-title mb-4">
+                      <span class="color-b">Find Your Perfect Property</span>
+                    </h1>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--/ Carousel end /-->
+  <section class="section-services section-t8">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="title-wrap d-flex justify-content-between">
+            
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card-box-c foo">
+            <div class="card-header-c d-flex">
+              
+              <div class=" card-box-ico card-title-c align-self-center">
+                <h2 class="title-c pl-3">Millions of Listing</h2>
+              </div>
+            </div>
+            <div class="card-body-c">
+              <p class="content-c">
+                Sed porttitor lectus nibh. Cras ultricies ligula sed magna dictum porta. Praesent sapien massa,
+                convallis a pellentesque
+                nec, egestas non nisi.
+              </p>
+            </div>
+            <div class="card-footer-c">
+              <a href="#" class="link-c link-icon">
+                Explore
+                <span class="ion-ios-arrow-forward"></span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card-box-c foo">
+            <div class="card-header-c d-flex">
+              
+              <div class="card-box-ico card-title-c align-self-center">
+                <h2 class="title-c pl-3">Find an Agent</h2>
+              </div>
+            </div>
+            <div class="card-body-c">
+              <p class="content-c">
+                Nulla porttitor accumsan tincidunt. Curabitur aliquet quam id dui posuere blandit. Mauris blandit
+                aliquet elit, eget tincidunt
+                nibh pulvinar a.
+              </p>
+            </div>
+            <div class="card-footer-c">
+              <a href="#" class="link-c link-icon ">
+                Get Started
+                <span class="ion-ios-arrow-forward"></span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card-box-c foo">
+            <div class="card-header-c d-flex">
+              
+              <div class="card-title-c card-box-ico align-self-center">
+                <h2 class="title-c pl-3">Sell</h2>
+              </div>
+            </div>
+            <div class="card-body-c">
+              <p class="content-c">
+                Sed porttitor lectus nibh. Cras ultricies ligula sed magna dictum porta. Praesent sapien massa,
+                convallis a pellentesque
+                nec, egestas non nisi.
+              </p>
+            </div>
+            <div class="card-footer-c">
+              <a href="#" class="link-c link-icon">
+                Read more
+                <span class="ion-ios-arrow-forward"></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--/ Property Star /-->
+  <section class="section-property section-t8">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="title-wrap d-flex justify-content-between">
+            <div class="title-box">
+              <h2 class="title-a">Latest Properties</h2>
+            </div>
+            <div class="title-link">
+              <a href="{% url 'property_list' %}">
+                All Property
+                <span class="ion-ios-arrow-forward"></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="property-carousel" class="owl-carousel owl-theme">
+        {% for property in latest_property %}
+          <div class="carousel-item-b">
+            <div class="card-box-a card-shadow">
+              <div class="img-box-a">
+                <img src="{{ property.property_image.first.image.url }}"
+                     alt=""
+                     class="img-a img-fluid"
+                     height=""
+                     width=""/>
+              </div>
+              <div class="card-overlay">
+                <div class="card-overlay-a-content">
+                  <div class="card-header-a">
+                    <h2 class="card-title-a">
+                      <a href="{% url 'property_detail' property.slug property.id %}">{{ property.title }}</a>
+                    </h2>
+                  </div>
+                  <div class="card-body-a">
+                    <div class="price-box d-flex">
+                      <span class="price-a">{{ property.property_type }} | &#8358; {{ property.price }}</span>
+                    </div>
+                    <a href="{% url 'property_detail' property.slug property.id %}" class="link-a">
+                      Click here to view
+                      <span class="ion-ios-arrow-forward"></span>
+                    </a>
+                  </div>
+                  <div class="card-footer-a">
+                    <ul class="card-info d-flex justify-content-around">
+                      <li>
+                        <h4 class="card-info-title">Area</h4>
+                        {% if property.area_size %}
+                          <span>{{ property.area_size }}m
+                            <sup>2</sup>
+                          </span>
+                        {% endif %}
+                      </li>
+                      <li>
+                        <h4 class="card-info-title">Beds</h4>
+                        {% if property.bedroom %}<span>{{ property.bedroom }}</span>{% endif %}
+                      </li>
+                      <li>
+                        <h4 class="card-info-title">Baths</h4>
+                        {% if property.bathroom %}<span>{{ property.bathroom }}</span>{% endif %}
+                      </li>
+                      <li>
+                        <h4 class="card-info-title">Garages</h4>
+                        {% if property.garage %}<span>{{ property.garage }}</span>{% endif %}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endblock content %}

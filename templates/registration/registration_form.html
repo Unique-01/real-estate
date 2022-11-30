@@ -1,0 +1,69 @@
+{% extends "registration/registration_base.html" %}
+{% load i18n crispy_forms_tags %}
+{% block title %}
+    {% trans "Register for an account" %}
+{% endblock title %}
+{% block content %}
+    <section>
+        <div class="container p-5 mx-auto shadow col-md-6 ">
+            <form method="post" action="">
+                {% csrf_token %}
+                <h2 class="color-b">SignUp</h2>
+                <hr />
+                {{ form|crispy }}
+                <!-- <div class="form-row">
+                    <div class="form-group col-md-6 mb-0">{{ form.username | as_crispy_field }}</div>
+                    <div class="form-group col-md-6 mb-0">{{ form.email | as_crispy_field }}</div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6 mb-0">{{ form.first_name | as_crispy_field }}</div>
+                    <div class="form-group col-md-6 mb-0">{{ form.last_name | as_crispy_field }}</div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6 mb-0">{{ form.password1 | as_crispy_field }}</div>
+                    <div class="form-group col-md-6 mb-0">{{ form.password2 | as_crispy_field }}</div>
+                </div>
+                <div>{{ form.tos|as_crispy_field }}</div> -->
+                <input type="submit" class="btn btn-success" value="{% trans 'Submit' %}" />
+            </form>
+        </div>
+    </section>
+    <!-- Button trigger modal -->
+    <!-- Modal -->
+    <div class="modal fade"
+         id="exampleModal"
+         tabindex="-1"
+         aria-labelledby="exampleModalLabel"
+         aria-hidden="true"
+         role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Terms and Conditions</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est voluptatum consequuntur unde eaque nobis possimus aperiam quibusdam voluptas laboriosam minima, quis tempore in incidunt ea, obcaecati ex. Impedit, cumque ea. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam a explicabo ab accusamus ducimus nihil earum voluptas repudiandae! Quam placeat rem temporibus minus deserunt ex deleniti, nesciunt ea. Amet, fugit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio dignissimos error hic iusto alias, consequuntur modi facere exercitationem cum ipsum commodi molestias vero neque, culpa id? Voluptas consectetur sequi iusto. Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore recusandae dolore ad deleniti. Dolorum at, error numquam itaque vel cumque asperiores labore voluptas nobis. Illo ad quae tempore adipisci est! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Amet consequuntur expedita dolor modi corrupti sint voluptate architecto obcaecati, dignissimos facilis, corporis cupiditate, itaque nobis numquam! Aperiam, suscipit ut? Facere, eum? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel assumenda consequatur voluptas porro ipsam, rerum saepe blanditiis nisi reiciendis odit ratione voluptatem provident aliquam laborum quos nesciunt cumque. Temporibus, dolore? Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto eveniet ea beatae amet error debitis. Aspernatur magni iste perferendis reiciendis voluptates error placeat animi! Commodi, sed. Enim porro molestias dolores! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolores quasi perferendis amet voluptates, possimus corrupti corporis quia, commodi, non placeat fugit voluptate veritatis iusto illum sit ipsa quam ad sint!
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+{% comment %}
+**registration/registration_form.html**
+Used to show the form users will fill out to register. By default, has
+the following context:
+
+``form``
+    The registration form. This will be an instance of some subclass
+    of ``django.forms.Form``; consult `Django's forms documentation
+    <http://docs.djangoproject.com/en/dev/topics/forms/>`_ for
+    information on how to display this in a template.
+{% endcomment %}

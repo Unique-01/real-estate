@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+    <form action="" method="post" class="alert alert-warning">
+        {% csrf_token %}
+        <p>
+            Are you sure you want to delete "{{ property.title }}"
+        </p>
+        <br/>
+        <button class="btn btn-danger" type="submit">Delete</button>
+        <a class="btn btn-light" href="{% url 'profile' request.user.username %}">Cancel</a>
+    </form>
+{% endblock content %}

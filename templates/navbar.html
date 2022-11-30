@@ -1,0 +1,99 @@
+{% url 'home' as home %}
+{% url 'property_list' as property_list %}
+{% url 'property_upload' as property_upload %}
+{% url 'registration_register' as registration_register %}
+{% url 'login' as login %}
+<nav class="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
+  <div class="container">
+    <button class="navbar-toggler collapsed"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarDefault"
+            aria-controls="navbarDefault"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <a class="navbar-brand text-brand" href="{% url 'home' %}">
+      Estate<span class="color-b">Agency</span>
+    </a>
+    <button type="button"
+            class="btn btn-link nav-search navbar-toggle-box-collapse d-md-none"
+            data-toggle="collapse"
+            data-target="#navbarTogglerDemo01"
+            aria-expanded="false">
+      <span class="fa fa-search" aria-hidden="true"></span>
+    </button>
+    <div class="navbar-collapse collapse justify-content-center"
+         id="navbarDefault">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link {% if request.path == home %}active{% endif %}"
+             href="{% url 'home' %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="about.html">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if request.path == property_list %}active{% endif %} "
+             href="{% url 'property_list' %}">
+            Property
+          </a>
+        </li>
+        {% comment %} <li class="nav-item">
+          <a class="nav-link" href="blog-grid.html">Blog</a>
+        </li> {% endcomment %}
+        {% if request.user.is_authenticated %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle"
+               href="#"
+               id="navbarDropdown"
+               role="button"
+               data-toggle="dropdown"
+               aria-haspopup="true"
+               aria-expanded="false">
+              My Account
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{% url 'profile' user.username %}">My Account</a>
+              <a class="dropdown-item" href="{% url 'profile_update' %}">Settings</a>
+              <a class="dropdown-item" href="{% url 'property_upload' %}">Add New property</a>
+              <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact Admin</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if request.path == property_upload %}active{% endif %} "
+               href="{% url 'property_upload' %}">
+              Add a Property
+            </a>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link {% if request.path == registration_register %}active{% endif %} "
+               href="{% url 'registration_register' %}">
+              Signup
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if request.path == login %}active{% endif %} "
+               href="{% url 'login' %}">
+              Login
+            </a>
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+    <button type="button"
+            class="btn btn-b-n navbar-toggle-box-collapse d-none d-md-block"
+            data-toggle="collapse"
+            data-target="#navbarTogglerDemo01"
+            aria-expanded="false">
+      <span class="fa fa-search" aria-hidden="true"></span>
+    </button>
+  </div>
+</nav>

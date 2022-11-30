@@ -1,0 +1,23 @@
+{% extends "admin/base.html" %}
+{% block title %}
+    {% if subtitle %}{{ subtitle }} |{% endif %}
+    {{ title }} | {{ site_title|default:_('Django site admin') }}
+{% endblock title %}
+{% block branding %}
+    <h1 id="site-name" style="font-family: cursive;">
+        <a href="{% url 'admin:index' %}">Realtor's Administration</a>
+    </h1>
+{% endblock branding %}
+{% block nav-global %}
+{% endblock nav-global %}
+{% block extrastyle %}
+    {{ block.super }}
+    <style>
+:root {
+  --primary: #9774d5;
+  --secondary: #785cab;
+  --link-fg: #7c449b;
+  --link-selected-fg: #8f5bb2;
+}
+    </style>
+{% endblock extrastyle %}

@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}
+    {% trans 'realtor' %}
+{% endblock title %}
+{% block content %}
+    <section class="intro-single mt-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-8">
+                    <div class="title-single-box">
+                        <h1 class="title-single">
+                            {{ property.count }}
+                            {% if property.count > 1 %}
+                                Properties
+                            {% else %}
+                                Property
+                            {% endif %}
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="property-grid grid">
+        <div class="container">
+            <div class="row">
+                {% for property in property %}
+                    <div class="col-md-4">
+                        <div class="card-box-a card-shadow">
+                            <div class="img-box-a">
+                                <img src="{{ property.property_image.first.image.url }}"
+                                     alt=""
+                                     class="img-a img-fluid"
+                                     height=""
+                                     width=""/>
+                            </div>
+                            <div class="card-overlay">
+                                <div class="card-overlay-a-content">
+                                    <div class="card-header-a">
+                                        <h2 class="card-title-a">
+                                            <a href="{% url 'property_detail' property.slug property.id %}">{{ property.title }}</a>
+                                        </h2>
+                                    </div>
+                                    <div class="card-body-a">
+                                        <div class="price-box d-flex">
+                                            <span class="price-a">{{ property.property_type }} | &#8358; {{ property.price }}</span>
+                                        </div>
+                                        <a href="{% url 'property_detail' property.slug property.id %}"
+                                           class="link-a">
+                                            Click here to view
+                                            <span class="ion-ios-arrow-forward"></span>
+                                        </a>
+                                    </div>
+                                    <div class="card-footer-a">
+                                        <ul class="card-info d-flex justify-content-around">
+                                            <li>
+                                                <h4 class="card-info-title">Area</h4>
+                                                {% if property.area_size %}
+                                                    <span>{{ property.area_size }}m
+                                                        <sup>2</sup>
+                                                    </span>
+                                                {% endif %}
+                                            </li>
+                                            <li>
+                                                <h4 class="card-info-title">Beds</h4>
+                                                {% if property.bedroom %}<span>{{ propety.bedroom }}</span>{% endif %}
+                                            </li>
+                                            <li>
+                                                <h4 class="card-info-title">Baths</h4>
+                                                {% if property.bathroom %}<span>{{ property.bathroom }}</span>{% endif %}
+                                            </li>
+                                            <li>
+                                                <h4 class="card-info-title">Garages</h4>
+                                                {% if property.garage %}<span>{{ property.garage }}</span>{% endif %}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock content %}

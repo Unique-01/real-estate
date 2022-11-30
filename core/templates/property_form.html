@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags static i18n %}
+{% block title %}
+    {% trans 'Upload Property' %}
+{% endblock title %}
+{% block content %}
+    <section>
+        <div class="mx-auto container">
+            <form action=""
+                  class="shadow p-5 rounded bg-white"
+                  id="my-dropzone-container"
+                  method="post"
+                  enctype='multipart/form-data'>
+                {% csrf_token %}
+                {{ form.media.js }}
+                <h3 class="color-b">Add a Property</h3>
+                <div>{{ form.title|as_crispy_field }}</div>
+                <div class="form-row">
+                    <div class="form-group col-md-4 mb-0">{{ form.country|as_crispy_field }}</div>
+                    <div class="form-group col-md-4 mb-0">{{ form.region | as_crispy_field }}</div>
+                    <div class="form-group col-md-4 mb-0">{{ form.city|as_crispy_field }}</div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6 mb-0">{{ form.address| as_crispy_field }}</div>
+                </div>
+                <div>{{ form.description | as_crispy_field }}</div>
+                <div class="form-row">
+                    <div class="form-group col-md-6 mb-0">{{ form.property_type|as_crispy_field }}</div>
+                    <div class="form-group col-md-6 mb-0">{{ form.category|as_crispy_field }}</div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-3 mb-0">{{ form.area_size|as_crispy_field }}</div>
+                    <div class="form-group col-md-3 mb-0">{{ form.bedroom|as_crispy_field }}</div>
+                    <div class="form-group col-md-3 mb-0">{{ form.bathroom|as_crispy_field }}</div>
+                    <div class="form-group col-md-3 mb-0">{{ form.garage|as_crispy_field }}</div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-3 mb-0">{{ form.room|as_crispy_field }}</div>
+                    <div class="form-group col-md-3 mb-0">{{ form.price|as_crispy_field }}</div>
+                    <div class="form-group col-md-3 mb-0">{{ form.postal_code|as_crispy_field }}</div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6 mb-0">{{ form.year_of_construction|as_crispy_field }}</div>
+                    <div class="form-group col-md-6 mb-0">{{ form.last_renovation|as_crispy_field }}</div>
+                </div>
+                {% comment %} {{form | crispy}} {% endcomment %}
+                {% comment %} <div class="fallback">
+                    <input name="file" type="file" multiple required />
+                </div> {% endcomment %}
+                <div class="input-images"></div>
+
+                {% comment %} <div class="dropzone" id="my-dropzone">
+                <div class="fallback">
+                    <input name="file" type="file" multiple required />
+                </div>
+                <div id="preview"></div>
+                <div class="dz-message" data-dz-message>
+                    <span>Add photo</span>
+                </div>
+                </div> {% endcomment %}
+                <br/>
+                <button id="button" class="btn btn-success">Upload</button>
+            </form>
+        </div>
+    </section>
+    <script>$(document).ready(function(){$('.input-images').imageUploader();});</script>
+{% endblock content %}

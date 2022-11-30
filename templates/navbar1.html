@@ -1,0 +1,66 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-success">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'home' %}">Ecom</a>
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#main_nav"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="main_nav">
+            {% comment %} <form class="container-fluid ms-auto" action="{% url 'search' %}">
+                <div class="input-group">
+                    <input type="text"
+                           class="form-control"
+                           placeholder="Search"
+                           name="q"
+                           aria-label="Search"
+                           aria-describedby="basic-addon1"/>
+                </div>
+            </form> {% endcomment %}
+            <ul class="navbar-nav ms-auto">
+                {% if user.is_authenticated %}
+                    <li class="nav-item dropdown">
+                        {% if user.profile.profile_image %}
+                            <a href="#" class="nav-link me-2 ">
+                                <img src="{{ user.profile.profile_image.url }}"
+                                     alt=""
+                                     width="30px"
+                                     height="30px"
+                                     class="rounded-pill"/>
+                            </a>
+                        {% else %}
+                            <a class="nav-link text-center px-3 me-2 text-light fw-bold bg-primary rounded-pill"
+                               href="#"
+                               data-bs-toggle="dropdown">
+                                {{ user.username.0 }}
+                            </a>
+                        {% endif %}
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="{% url 'profile' user.username %}">Properties</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{% url 'profile_update' %}">Settings</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'property_upload' %}"
+                           class=" bg-primary px-5 btn rounded nav-link">SELL</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item"><a href="{% url 'login' %}" class="nav-link btn">Login</a></li>
+                    <li class="nav-item"><a href="{% url 'registration_register' %}" class="nav-link btn text-nowrap">Sign Up</a></li>
+                {% endif %}
+            </ul>
+        </div>
+        <!-- navbar-collapse.// -->
+    </div>
+    <!-- container-fluid.// -->
+</nav>

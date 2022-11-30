@@ -1,0 +1,272 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}
+    {% trans  property.title %}
+{% endblock title %}
+{% block content %}
+    <!--/ Intro Single star /-->
+    <section class="intro-single">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-8">
+                    <div class="title-single-box">
+                        <h1 class="title-single">{{ property.title | capfirst }}</h1>
+                        <span class="color-text-a">{{ property.city }}</span>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-4">
+                    <nav aria-label="breadcrumb"
+                         class="breadcrumb-box d-flex justify-content-lg-end">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="{% url 'home' %}">Home</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="{% url 'property_list' %}">Properties</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">{{ property.title | capfirst }}</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/ Intro Single End /-->
+    <!--/ Property Single Star /-->
+    <section class="property-single nav-arrow-b">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div id="property-single-carousel"
+                         class="owl-carousel owl-arrow gallery-property">
+                        {% for img in property.property_image.all %}
+                            <div class="carousel-item-b">
+                                <img src="{{ img.image.url }}" alt="" height="" width=""/>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="row justify-content-between">
+                        <div class="col-md-5 col-lg-4">
+                            <div class="property-price d-flex justify-content-center foo">
+                                <div class="card-header-c d-flex">
+                                    <div class="card-box-ico">
+                                        <span class="ion-money">&#8358;</span>
+                                    </div>
+                                    <div class="card-title-c align-self-center">
+                                        <h5 class="title-c">{{ property.price }}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="property-summary">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="title-box-d section-t4">
+                                            <h3 class="title-d">Quick Summary</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="summary-list">
+                                    <ul class="list">
+                                        {% comment %} <li class="d-flex justify-content-between">
+                                            <strong>Property ID:</strong>
+                                            <span>1134</span>
+                                        </li> {% endcomment %}
+                                        <li class="d-flex justify-content-between">
+                                            <strong>Location:</strong>
+                                            <span>{{ property.city }}</span>
+                                        </li>
+                                        {% if property.category %}
+                                            <li class="d-flex justify-content-between">
+                                                <strong>Property Type:</strong>
+                                                <span>{{ property.category | capfirst }}</span>
+                                            </li>
+                                        {% endif %}
+                                        <li class="d-flex justify-content-between">
+                                            <strong>Status:</strong>
+                                            <span>{{ property.property_type | capfirst }}</span>
+                                        </li>
+                                        {% if property.area_size %}
+                                            <li class="d-flex justify-content-between">
+                                                <strong>Area:</strong>
+                                                <span>{{ property.area_size }}m
+                                                    <sup>2</sup>
+                                                </span>
+                                            </li>
+                                        {% endif %}
+                                        {% if property.bedroom %}
+                                            <li class="d-flex justify-content-between">
+                                                <strong>Beds:</strong>
+                                                <span>{{ property.bedroom }}</span>
+                                            </li>
+                                        {% endif %}
+                                        {% if property.bathroom %}
+                                            <li class="d-flex justify-content-between">
+                                                <strong>Baths:</strong>
+                                                <span>{{ property.bathroom }}</span>
+                                            </li>
+                                        {% endif %}
+                                        {% if property.garage %}
+                                            <li class="d-flex justify-content-between">
+                                                <strong>Garage:</strong>
+                                                <span>{{ property.garage }}</span>
+                                            </li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-7 col-lg-7 section-md-t3">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="title-box-d">
+                                        <h3 class="title-d">Property Description</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="property-description">{{ property.description }}</div>
+                            {% comment %} <div class="row section-t3">
+                                <div class="col-sm-12">
+                                    <div class="title-box-d">
+                                        <h3 class="title-d">Amenities</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="amenities-list color-text-a">
+                                <ul class="list-a no-margin">
+                                    <li>Balcony</li>
+                                    <li>
+                                        Outdoor Kitchen
+                                    </li>
+                                    <li>
+                                        Cable Tv
+                                    </li>
+                                    <li>
+                                        Deck
+                                    </li>
+                                    <li>
+                                        Tennis Courts
+                                    </li>
+                                    <li>
+                                        Internet
+                                    </li>
+                                    <li>
+                                        Parking
+                                    </li>
+                                    <li>
+                                        Sun Room
+                                    </li>
+                                    <li>
+                                        Concrete Flooring
+                                    </li>
+                                </ul>
+                            </div> {% endcomment %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="row section-t3">
+                        <div class="col-sm-12">
+                            <div class="title-box-d">
+                                <h3 class="title-d">
+                                    Contact Agent
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-lg-4">
+                            {% if property.owner.profile.profile_image %}
+                                <img src="{{ property.owner.profile.profile_image.url }}"
+                                     alt=""
+                                     class="img-fluid"
+                                     height=""
+                                     width=""/>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="property-agent">
+                                <h4 class="title-agent">
+                                    <a href="{% url 'profile' property.owner.username %}">
+                                        {{ property.owner.get_full_name }}
+                                    </a>
+                                </h4>
+                                <p class="color-text-a">
+                                    Nulla porttitor accumsan tincidunt. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet
+                                    dui. Quisque velit nisi,
+                                    pretium ut lacinia in, elementum id enim.
+                                </p>
+                                <ul class="list-unstyled">
+                                    <li class="d-flex justify-content-between">
+                                        <strong>Phone:</strong>
+                                        {% if property.owner.profile.contact_info %}
+                                            <span class="color-text-a">{{ property.owner.profile.contact_info }}</span>
+                                        {% endif %}
+                                    </li>
+                                    {% comment %} <li class="d-flex justify-content-between">
+                              <strong>Mobile:</strong>
+                              <span class="color-text-a">777 287 378 737</span>
+                                    </li> {% endcomment %}
+                                    <li class="d-flex justify-content-between">
+                                        <strong>Email:</strong>
+                                        <span class="color-text-a">{{ property.owner.email }}</span>
+                                    </li>
+                                </ul>
+                                <a href="{% url 'profile' property.owner.username %}" class="btn btn-b">
+                                    View Profile
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-4">
+                            <div class="property-contact">
+                                <form class="form-a" method="post" action="{% url 'contact_email' %}">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="owner_email" value="{{ property.owner.email }}"/>
+                                    <div class="row">
+                                        <div class="col-md-12 mb-1">
+                                            <div class="form-group">
+                                                <input type="text"
+                                                       class="form-control form-control-lg form-control-a"
+                                                       id="inputName"
+                                                       placeholder="Subject *"
+                                                       name="subject"
+                                                       required/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mb-1">
+                                            <div class="form-group">
+                                                <input type="email"
+                                                       class="form-control form-control-lg form-control-a"
+                                                       id="inputEmail1"
+                                                       placeholder="Email *"
+                                                       name="sender_email"
+                                                       required/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mb-1">
+                                            <div class="form-group">
+                                                <textarea id="textMessage"
+                                                          class="form-control"
+                                                          placeholder="Comment *"
+                                                          name="message"
+                                                          cols="45"
+                                                          rows="8"
+                                                          name="message"
+                                                          required></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <button type="submit" class="btn btn-a">
+                                                Send Message
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/ Property Single End /-->
+{% endblock content %}

@@ -1,0 +1,14 @@
+{% extends "registration/registration_base.html" %}
+{% load i18n %}
+{% block title %}
+    {% trans "Logged out" %}
+{% endblock title %}
+{% block content %}
+    <div class="alert alert-success fade show text-center" role="alert">{% trans "Successfully logged out" %}.</div>
+    <div>
+        <p>
+            Back to
+            <a href="{% url 'home' %}">home</a>
+        </p>
+    </div>
+{% endblock content %}

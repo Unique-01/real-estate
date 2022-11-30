@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+  <section>
+    <div class="container col-md-8">
+      <div class="shadow px-4 py-4 mt-5 mt-md-0 row">
+        <div class="text-center text-md-left col-md-4">
+          <img {% if user.profile.profile_image %} src="{{ user.profile.profile_image.url }}" {% else %} src="{% static 'avatar1.png' %}" {% endif %}
+               alt="."
+               width="150px"
+               height="150px"
+               class="rounded-circle"/>
+          <br />
+          {% if user == request.user %}
+            <a href="{% url 'profile_update' %}" class="btn btn-success mt-3 ml-2 ">
+              <i class="fa fa-pencil"></i>&nbsp;Edit Profile
+            </a>
+          {% endif %}
+        </div>
+        <br />
+        <div class="pt-md-3 pt-4 px-3">
+          <h2 class="text-capitalize">{{ user.get_full_name }}</h2>
+          <p>
+            <small>
+              {% if online %}
+                <span> <span class="fa fa-dot-circle-o text-success"></span>&nbsp; online</span>
+              {% else %}
+                <span><span class="fa fa-dot-circle-o text-warning"></span>&nbsp; Last Seen {{ user.online.last_activity| timesince }}</span> &nbsp;&nbsp;
+              {% endif %}
+              &nbsp;&nbsp;&nbsp;
+              <span><span class="fa fa-clock-o"></span>&nbsp; Member for {{ user.date_joined | timesince }}</span>
+            </small>
+          </p>
+          <p>
+            <span><span class="fa fa-phone text-success "></span>&nbsp; {{ user.profile.contact_info }}</span>
+          </p>
+          <p>
+            <span><span class="fa fa-envelope-o text-danger"></span>&nbsp; {{ user.email }}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <br />
+  <br />
+  <!--/ Property Grid Star /-->
+  <section class="property-grid grid">
+    <div class="container">
+      {% if request.user == user %}
+        <h3 class="color-b text-capitalize">my properies</h3>
+      {% else %}
+        <h3 class="color-b text-capitalize">user's properties</h3>
+      {% endif %}
+      <br />
+      <div class="row">
+        {% for property in page_obj %}
+          <div class="col-md-4">
+            <div class="card-box-a card-shadow">
+              <div class="img-box-a">
+                <img src="{{ property.property_image.first.image.url }}"
+                     alt=""
+                     class="img-a img-fluid"
+                     height=""
+                     width=""/>
+              </div>
+              <div class="card-overlay">
+                <div class="card-overlay-a-content">
+                  <div class="card-header-a">
+                    <h2 class="card-title-a">
+                      <a href="{% url 'property_detail' property.slug property.id %}">{{ property.title }}</a>
+                    </h2>
+                  </div>
+                  <div class="card-body-a">
+                    <div class="price-box d-flex">
+                      <span class="price-a">{{ property.property_type }} | &#8358; {{ property.price }}</span>
+                    </div>
+                    <a href="{% url 'property_detail' property.slug property.id %}"
+                       class="link-a">
+                      Click here to view
+                      <span class="ion-ios-arrow-forward"></span>
+                    </a>
+                    <br />
+                    {% if request.user == user %}
+                      <a href="{% url 'property_delete' property.slug property.id %}"
+                         class="btn-sm btn-danger">Delete</a>
+                    {% endif %}
+                  </div>
+                  <div class="card-footer-a">
+                    <ul class="card-info d-flex justify-content-around">
+                      <li>
+                        <h4 class="card-info-title">Area</h4>
+                        {% if property.area_size %}
+                          <span>{{ property.area_size }}m
+                            <sup>2</sup>
+                          </span>
+                        {% endif %}
+                      </li>
+                      <li>
+                        <h4 class="card-info-title">Beds</h4>
+                        {% if property.bedroom %}<span>{{ propety.bedroom }}</span>{% endif %}
+                      </li>
+                      <li>
+                        <h4 class="card-info-title">Baths</h4>
+                        {% if property.bathroom %}<span>{{ property.bathroom }}</span>{% endif %}
+                      </li>
+                      <li>
+                        <h4 class="card-info-title">Garages</h4>
+                        {% if property.garage %}<span>{{ property.garage }}</span>{% endif %}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="row">
+        <div class="col-sm-12">{% include 'pagination.html' %}</div>
+      </div>
+    </div>
+  </section>
+  <!--/ Property Grid End /-->
+{% endblock content %}

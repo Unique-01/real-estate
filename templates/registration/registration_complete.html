@@ -1,0 +1,18 @@
+{% extends "registration/registration_base.html" %}
+{% load i18n %}
+{% block title %}
+    {% trans "Activation email sent" %}
+{% endblock title %}
+{% block content %}
+    <div class="alert alert-info fade show text-center" role="alert">
+        {% trans "Please check your email to complete the registration process." %}
+    </div>
+{% endblock content %}
+{% comment %}
+**registration/registration_complete.html**
+
+Used after successful completion of the registration form. This
+template has no context variables of its own, and should simply inform
+the user that an email containing account-activation information has
+been sent.
+{% endcomment %}
